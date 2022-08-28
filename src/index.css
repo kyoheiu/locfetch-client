@@ -1,0 +1,62 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #22272e;
+  margin: auto;
+  font-family: monospace;
+  color: #adbac7;
+  text-align: center;
+  width: 90%;
+}
+
+main {
+  min-height: 90vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+thead {
+  font-size: small;
+  overflow-x: auto;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th,
+td {
+  border: dotted 1px;
+  padding: 10px;
+  text-align: right;
+}
+
+.repository {
+  font-weight: bolder;
+}
+
+.total {
+  font-weight: bolder;
+}
+
+a {
+  text-decoration: underline;
+  color: #adbac7;
+}
+
+input {
+  min-width: 40%;
+  font-family: monospace;
+}
+
+button {
+  font-family: monospace;
+}
