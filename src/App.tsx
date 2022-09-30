@@ -6,7 +6,7 @@ import Layout from "./Layout";
 export const [stats, setStats] = createSignal<Res>({
   origin: "",
   stats: [],
-  total: empty_stat
+  total: empty_stat,
 });
 const [url, setUrl] = createSignal("");
 const [errMessage, setErrMessage] = createSignal("");
@@ -17,7 +17,7 @@ const fetch_data = async (url: string) => {
   setStats({
     origin: "",
     stats: [],
-    total: empty_stat
+    total: empty_stat,
   });
   if (url.length == 0) {
     return;
@@ -34,17 +34,17 @@ const fetch_data = async (url: string) => {
       setStats({
         origin: "",
         stats: [],
-        total: empty_stat
+        total: empty_stat,
       });
       setErrMessage(await res.text());
     } else {
       const j = await res.json();
       console.log(j);
       setStats(() => j);
-      const inputField = document.getElementById("urlform");
-      if (inputField !== null) {
-        (inputField as HTMLTextAreaElement).value = "";
-      }
+    }
+    var inputField = document.getElementById("urlform");
+    if (inputField !== null) {
+      (inputField as HTMLTextAreaElement).value = "";
     }
   }
 };
@@ -57,24 +57,40 @@ const App = () => {
       <main>
         <h1>Count the lines of code online.</h1>
         <p>
-          Paste the remote repository URL.
+          Enter the remote repository URL.
           <br />
           (e.g. https://github.com/username/project)
         </p>
-        <input
-          id='urlform'
-          onInput={(e) => setUrl((e.target as HTMLTextAreaElement).value)}
-        />
+        <input id='urlform' />
         &nbsp;
+        <button
+          onclick={() =>
+            setUrl(
+              (document.getElementById("urlform")! as HTMLTextAreaElement).value
+            )
+          }
+        >
+          Count
+        </button>
         <p>{loading.loading && "Loading..."}</p>
-        <Show when={errMessage().length == 0} fallback={<div>{url}<br/>{errMessage}</div>}>
+        <Show
+          when={errMessage().length == 0}
+          fallback={
+            <div>
+              {url}
+              <br />
+              {errMessage}
+            </div>
+          }
+        >
           {Layout()}
         </Show>
       </main>
       <footer>
         {import.meta.env.VITE_VERSION}
         <br />
-        <a href='https://github.com/kyoheiu'>github.com/kyoheiu</a> · <a href='https://ko-fi.com/P5P6C4FF2'>Support me on Ko-fi</a>
+        <a href='https://github.com/kyoheiu'>github.com/kyoheiu</a> ·{" "}
+        <a href='https://ko-fi.com/P5P6C4FF2'>Support me on Ko-fi☕</a>
       </footer>
     </>
   );
